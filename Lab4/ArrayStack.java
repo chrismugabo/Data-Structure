@@ -114,10 +114,14 @@ public class ArrayStack<T> extends Stack<T> {
     public static void main(String[] args) {
         ArrayStack<String> a = new ArrayStack<>();
         // Test the checkExpression method with a balanced expression
-        String expression = "{([abc])}";
-        boolean isValid = a.checkExpression(expression);
+        String expression1 = "{([abc])}";
+        String expression2 = "<({3+5}(]>";
+        boolean isValid = a.checkExpression(expression1);
         System.out.println("Expression is balanced: " + isValid);
+        boolean isNotValid = a.checkExpression(expression2);
+        System.out.println("Expression is balanced: " + isNotValid);
 
+        
         // Task 2: Implement file reading and bracket checking
         String filePath = "sample.txt";  // Modify with actual file path
         try (Scanner scanner = new Scanner(new File(filePath))) {
