@@ -1,73 +1,32 @@
-public class LinkedQueue<E> implements Queue<E> {
-    private Node<E> head = new Node<>(); // Dummy node
-    private int size;
+public class TestStringQueueLinkedList {
+    public static void main(String[] args) {
+        // Create an instance of LinkedQueue
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
-    // Adds an element to the back of the queue
-    public void add(E element) {
-        head.prev = head.prev.next = new Node<>(element, head.prev, head);
-        ++size;
-    }
+        // a. Adds AB, AC, AD, AE, AF to the queue
+        queue.add("AB");
+        queue.add("AC");
+        queue.add("AD");
+        queue.add("AE");
+        queue.add("AF");
 
-    // Returns the element at the front of the queue
-    public E element() {
-        if (isEmpty()) {
-            throw new java.util.NoSuchElementException();
-        }
-        return head.next.element;
-    }
+        // b. Prints the queue
+        System.out.println("Queue after adding AB, AC, AD, AE, AF:");
+        queue.printQueue();
 
-    // Checks if the queue is empty
-    public boolean isEmpty() {
-        return size == 0;
-    }
+        // c. Remove two elements from the queue
+        queue.remove();
+        queue.remove();
 
-    // Removes and returns the element at the front of the queue
-    public E remove() {
-        if (isEmpty()) {
-            throw new java.util.NoSuchElementException();
-        }
-        E element = head.next.element;
-        head.next = head.next.next;
-        head.next.prev = head;
-        --size;
-        return element;
-    }
+        // d. Prints the queue
+        System.out.println("Queue after removing two elements:");
+        queue.printQueue();
 
-    // Returns the number of elements in the queue
-    public int size() {
-        return size;
-    }
+        // e. Add a new element AG to the queue
+        queue.add("AG");
 
-    // Prints the queue
-    public void printQueue() {
-        System.out.print("[");
-        Node<E> current = head.next;
-        while (current != head) {
-            System.out.print(current.element);
-            if (current.next != head) {
-                System.out.print(", ");
-            }
-            current = current.next;
-        }
-        System.out.println("]");
-    }
-
-    // Node class for the linked list
-    public static class Node<E> {
-        E element;
-        Node<E> prev;
-        Node<E> next;
-
-        // Dummy node constructor
-        Node() {
-            this.prev = this.next = this;
-        }
-
-        // Node constructor with element, previous, and next references
-        Node(E element, Node<E> prev, Node<E> next) {
-            this.element = element;
-            this.prev = prev;
-            this.next = next;
-        }
+        // f. Prints the queue
+        System.out.println("Queue after adding AG:");
+        queue.printQueue();
     }
 }
